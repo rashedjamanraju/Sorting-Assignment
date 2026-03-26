@@ -196,5 +196,6 @@ cd insertion_sort
 
 ## 👨‍💻 Author
 
-Rashed
-Data Structures & Algorithms Assignment
+Rashed Jaman Raju
+C251100
+
