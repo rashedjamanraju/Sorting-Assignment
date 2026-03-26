@@ -50,6 +50,8 @@ void writeToFile(const std::vector<int>& data, const std::string& filename) {
     return;
   }
 
+  file << data.size() << "\n";
+
   for (int num : data) {
     file << num << "\n";
   }
@@ -62,13 +64,19 @@ void writeToFile(const std::vector<int>& data, const std::string& filename) {
 // Main Function
 // ------------------------------------------------------------
 int main() {
-  int size = 10;  // Number of test values
+  int size = 100000;  // Number of test values
   int minValue = 1;
-  int maxValue = 10;
+  int maxValue = 1000000000;
 
   std::vector<int> testCases = generateRandomList(size, minValue, maxValue);
 
-  writeToFile(testCases, "test_cases.txt");
+  // writeToFile(testCases, "test_cases.txt");
+  writeToFile(testCases,
+              "/media/rashed/DSA/Sorting-Assignment/insertion_sort/input.in");
+  writeToFile(testCases,
+              "/media/rashed/DSA/Sorting-Assignment/quick_sort/input.in");
+  writeToFile(testCases,
+              "/media/rashed/DSA/Sorting-Assignment/merge_sort/input.in");
 
   return 0;
 }
