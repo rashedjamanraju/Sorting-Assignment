@@ -1,28 +1,25 @@
-# Sorting Assignment (Insertion, Merge, Quick Sort)
+# 🧮 Sorting Assignment (Insertion, Merge, Quick Sort)
 
 ## 📁 Project Structure
 
-```
+```bash
 Sorting-Assignment/
 │
 ├── insertion_sort/
 │   ├── insertion_sort.cpp
-│   ├── insertion_sort.o
-│   ├── insertion_sort        (executable)
+│   ├── insertion_sort      # executable
 │   ├── input.in
 │   └── output.in
 │
 ├── merge_sort/
 │   ├── merge_sort.cpp
-│   ├── merge_sort.o
-│   ├── merge_sort            (executable)
+│   ├── merge_sort          # executable
 │   ├── input.in
 │   └── output.in
 │
 ├── quick_sort/
 │   ├── quick_sort.cpp
-│   ├── quick_sort.o
-│   ├── quick_sort            (executable)
+│   ├── quick_sort          # executable
 │   ├── input.in
 │   └── output.in
 │
@@ -31,72 +28,62 @@ Sorting-Assignment/
 
 ---
 
-## ⚙️ How It Works
+## ⚙️ Overview
 
-### 1. Random Test Case Generator
+This project implements three sorting algorithms:
 
-The file:
+* Insertion Sort
+* Merge Sort
+* Quick Sort
 
-```
+A separate program generates random input data and distributes it to all algorithms for fair comparison.
+
+---
+
+## 🎲 Random Test Case Generator
+
+**Source File:**
+
+```bash
 random_number_generation.cpp
 ```
 
-* Generates random numbers using a manual Linear Congruential Generator (LCG)
-* Creates a list of numbers
-* Writes the same input file into all three sorting folders:
+### ⚠️ Important
 
-  * `insertion_sort/input.in`
-  * `merge_sort/input.in`
-  * `quick_sort/input.in`
-
----
-
-### 2. Input Format
-
-Each `input.in` file looks like:
-
-```
-100000
-56
-789
-1234
-...
-```
-
-* First line → number of elements
-* Next lines → values
-
----
-
-### 3. Output Format
-
-Each sorting program writes sorted output to:
-
-```
-output.in
-```
+This file is **not executable by default**.
+You must compile it to create a program (e.g., `generator`).
 
 ---
 
 ## 🚀 How to Compile
 
-Go inside each folder and run:
-
-### Insertion Sort
+### 🔧 Compile Generator
 
 ```bash
+g++ random_number_generation.cpp -o generator
+```
+
+👉 This creates an executable named:
+
+```bash
+generator
+```
+
+---
+
+### 🔧 Compile Sorting Programs
+
+```bash
+# Insertion Sort
+cd insertion_sort
 g++ insertion_sort.cpp -o insertion_sort
-```
 
-### Merge Sort
-
-```bash
+# Merge Sort
+cd ../merge_sort
 g++ merge_sort.cpp -o merge_sort
-```
 
-### Quick Sort
-
-```bash
+# Quick Sort
+cd ../quick_sort
 g++ quick_sort.cpp -o quick_sort
 ```
 
@@ -104,91 +91,110 @@ g++ quick_sort.cpp -o quick_sort
 
 ## ▶️ How to Run
 
-Run executables inside each folder:
-
-```bash
-./insertion_sort
-./merge_sort
-./quick_sort
-```
-
----
-
-## 🎲 Generate Test Data
-
-Compile and run the generator:
-
-```bash
-g++ random_number_generation.cpp -o generator
-./generator
-```
-
-This will automatically create input files for all sorting algorithms.
-
----
-
-## 📌 How to Set File Paths
-
-In your generator code, you used absolute paths like:
-
-```cpp
-writeToFile(testCases,
-"/media/rashed/DSA/Sorting-Assignment/insertion_sort/input.in");
-```
-
-### ✅ Option 1: Use Absolute Path (Your Current Way)
-
-✔ Works only on your machine
-❌ Not portable
-
----
-
-### ✅ Option 2 (Recommended): Use Relative Paths
-
-Replace with:
-
-```cpp
-writeToFile(testCases, "insertion_sort/input.in");
-writeToFile(testCases, "quick_sort/input.in");
-writeToFile(testCases, "merge_sort/input.in");
-```
-
-✔ Works on any system
-✔ Best for GitHub projects
-
----
-
-## 📂 Important Note About Paths
-
-* Run the generator **from the root folder**:
+### 1️⃣ Generate Input Data
 
 ```bash
 cd Sorting-Assignment
 ./generator
 ```
 
-Otherwise, relative paths will break.
+✔ This runs the compiled generator
+✔ Creates:
+
+```bash
+insertion_sort/input.in
+merge_sort/input.in
+quick_sort/input.in
+```
 
 ---
 
-## 🧠 Summary
+### 2️⃣ Run Sorting Algorithms
 
-* Generator creates test cases
-* Each algorithm reads from `input.in`
-* Each writes to `output.in`
-* Use **relative paths** for portability
+```bash
+# Insertion Sort
+cd insertion_sort
+./insertion_sort
+
+# Merge Sort
+cd ../merge_sort
+./merge_sort
+
+# Quick Sort
+cd ../quick_sort
+./quick_sort
+```
 
 ---
 
-## ✅ Tips
+## 📌 Input Format
 
-* Always keep folder structure unchanged
-* Use same input for fair comparison
-* Avoid absolute paths in shared projects
+```txt
+N
+value1
+value2
+value3
+...
+```
+
+* `N` = number of elements
+* Each value is on a new line
+
+---
+
+## 📌 Output
+
+Each algorithm writes to:
+
+```bash
+output.in
+```
+
+---
+
+## 📌 Important: Relative Paths
+
+Generator uses:
+
+```cpp
+"insertion_sort/input.in"
+```
+
+### ✅ Correct Way
+
+```bash
+cd Sorting-Assignment
+./generator
+```
+
+### ❌ Wrong Way
+
+```bash
+cd insertion_sort
+../generator   # ❌ wrong directory
+```
+
+---
+
+## 🧠 Key Notes
+
+* Same input is used for all algorithms
+* Ensures fair comparison
+* Uses relative paths → portable
+* No dependency on absolute paths
+
+---
+
+## 💡 Future Improvements
+
+* ⏱ Add execution time comparison
+* 📊 Benchmark results
+* 🛠 Makefile automation
+* 📈 Graph visualization
 
 ---
 
 ## 👨‍💻 Author
 
 Rashed
-(Data Structures & Algorithms Assignment)
+Data Structures & Algorithms Assignment
