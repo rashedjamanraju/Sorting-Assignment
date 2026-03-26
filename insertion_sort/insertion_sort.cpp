@@ -19,67 +19,28 @@ using vll = vector<long long>;
 const int MOD = 1e9 + 7;
 const double PI = 3.141592653589793;
 
+string student_name = "Rashed Jaman Raju";
+string student_id = "C251100";
+string algorithm = "Insertion Sort";
+
 // ---------- Fast IO ----------
 void fast_io() {
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
 }
 
-// ------------ GCD ------------
-int __gcd(int a, int b) {
-  while (b != 0) {
-    int r = a % b;
-    a = b;
-    b = r;
-  }
-  return a;
-}
-
-// ---------- 4 Direction Neighbours ----------
-vector<pii> get4Neighbours(int x, int y, int n, int m) {
-  int dx[] = {-1, 1, 0, 0};
-  int dy[] = {0, 0, -1, 1};
-
-  vector<pii> nb;
-
-  for (int i = 0; i < 4; i++) {
-    int nx = x + dx[i];
-    int ny = y + dy[i];
-
-    if (nx >= 0 && nx < n && ny >= 0 && ny < m) nb.push_back({nx, ny});
-  }
-
-  return nb;
-}
-
-// ---------- 8 Direction Neighbours ----------
-vector<pii> get8Neighbours(int x, int y, int n, int m) {
-  int dx[] = {-1, -1, -1, 0, 0, 1, 1, 1};
-  int dy[] = {-1, 0, 1, -1, 1, -1, 0, 1};
-
-  vector<pii> nb;
-
-  for (int i = 0; i < 8; i++) {
-    int nx = x + dx[i];
-    int ny = y + dy[i];
-
-    if (nx >= 0 && nx < n && ny >= 0 && ny < m) nb.push_back({nx, ny});
-  }
-
-  return nb;
-}
-
+// ---------- Insertion Sort -------------
 void insertion_sort(vector<int> &v, int n) {
-  for (int i = 0; i < n - 1; ++i) {
-    int min_value = v[i];
-    int min_value_contained_in_index = i;
-    for (int j = i + 1; j < n; j++) {
-      if (min_value > v[j]) {
-        min_value = v[j];
-        min_value_contained_in_index = j;
-      }
+  for (int i = 1; i < n; i++) {
+    int key = v[i];
+    int j = i - 1;
+
+    while (j >= 0 && v[j] > key) {
+      v[j + 1] = v[j];
+      j--;
     }
-    swap(v[min_value_contained_in_index], v[i]);
+
+    v[j + 1] = key;
   }
 }
 
@@ -92,22 +53,35 @@ void solve() {
     /* code */
     cin >> v[i];
   }
+
+  // ⏱️ Start time
+  auto start = chrono::high_resolution_clock::now();
+
   insertion_sort(v, n);
-  for (auto each : v) {
-    cout << each << " ";
-  }
-  cout << endl;
+
+  // ⏱️ End time
+  auto end = chrono::high_resolution_clock::now();
+
+  // ⏱️ Duration in milliseconds
+  auto duration = chrono::duration_cast<chrono::milliseconds>(end - start);
+
+  // for (auto each : v) {
+  //   cout << each << " ";
+  // }
+  // cout << endl;
+
+  cout << "Student Name   : " << student_name << "\n";
+  cout << "Student ID     : " << student_id << "\n";
+  cout << "Algorithm Name : " << algorithm << "\n";
+  cout << "Input Size     : " << n << "\n";
+  cout << "Execution Time : " << duration.count() << " ms\n";
+  cout << "-----------------------------\n";
 }
 
 int main() {
   fast_io();
 
-  // int t;
-  // cin >> t;
-
-  // while (t--) {
-  //   solve();
-  // }
+  freopen("input.in", "r", stdin);
 
   solve();
 
